@@ -21,8 +21,6 @@
               <h3><%= review.user_rating %> Stars </h3>
               <hr>
               <h5><%= review.description %> </h5>
-              <hr>
-              <%= review.featured %>
               <%= review.user %>
               <% if @food.user == current_user %>
                 <button class="btn btn-success"><%= link_to "Edit", edit_food_review_path(@food, review) %></button>

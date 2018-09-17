@@ -6,12 +6,10 @@
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
 
-  [0..100].each do |i|
-    # @user = User.create(:name => "name#{i}", etc...)
-    @user = User.new
-    @user.email = 'test#{i}@example.com'
-    @user.password = '#{i}aaaaaa'
-    @user.save!
-    @food = @user.foods.build(:name => "#{i}aaa")
+require 'faker'
 
-    end
+@user = User.create( email: "NICKexample@gmail.com", password: "eeeeee")
+50.times do |i|
+  @food = @user.foods.build(:name => Faker::Food.fruits, :price => 1+rand(4), :location=> Faker::Address.country)
+  @food.save!
+end
