@@ -13,8 +13,19 @@ describe "the add a food item process" do
     @user = User.create( email: "example@gmail.com", password: "eeeeee")
     login_as(@user, :scope => :user)
     visit new_food_path
-    binding.pry
     expect(page).to have_content 'New list'
+  end
+
+  it "add a new food item" do
+    @user = User.create( email: "example@gmail.com", password: "eeeeee")
+    login_as(@user, :scope => :user)
+    visit new_food_path
+    fill_in 'Name', :with => 'AWESOME APPLE'
+    select('$$', :from => "food_price")
+    select('USA', :from => "food_location")
+    click_button('Create Food')
+    click_on 'Create Food'
+    expect(page).to have_content 'AWESOME APPLE'
   end
 
 end

@@ -6,13 +6,34 @@
     <hr>
 
     <% @foods.featured_foods.each do |food| %>
-    <h3 class="btn-info"><%= link_to food.name, food_path(food) %></h3>
-    <p><strong>From: <%= food.location %></strong></p>
-    <p><strong>Price $<%= food.price %></strong></p>
-    <% if food.image.attached? %>
-        <p><strong>Image:</strong><br><%= image_tag food.image, class: "picture"  %></p>
-    <%end%>
+        <h3 class="btn-info"><%= link_to food.name, food_path(food) %></h3>
+        <p><strong>From: <%= food.location %></strong></p>
+        <p><strong>Price $<%= food.price %></strong></p>
+        <% if food.image.attached? %>
+            <p><strong>Image:</strong><br><%= image_tag food.image, class: "picture"  %></p>
+        <% end %>
     <% end %>
+    <h1><strong>Three Most Recent Food Items</strong></h1>
+    <hr>
+    <% @foods.three_most_recent.each do |food| %>
+        <h3 class="btn-info"><%= link_to food.name, food_path(food) %></h3>
+        <p><strong>From: <%= food.location %></strong></p>
+        <p><strong>Price $<%= food.price %></strong></p>
+        <% if food.image.attached? %>
+            <p><strong>Image:</strong><br><%= image_tag food.image, class: "picture"  %></p>
+        <% end %>
+    <% end %>
+    <h1><strong>Made in The United States</strong></h1>
+    <hr>
+    <% @foods.made_in_USA.each do |food| %>
+        <h3 class="btn-info"><%= link_to food.name, food_path(food) %></h3>
+        <p><strong>From: <%= food.location %></strong></p>
+        <p><strong>Price $<%= food.price %></strong></p>
+        <% if food.image.attached? %>
+            <p><strong>Image:</strong><br><%= image_tag food.image, class: "picture"  %></p>
+        <% end %>
+    <% end %>
+
 
  <h1><strong>The Foods with the Most Reviews</strong></h1>
  <hr>

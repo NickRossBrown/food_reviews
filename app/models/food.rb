@@ -10,6 +10,12 @@ class Food < ActiveRecord::Base
     where({:featured => true})
   end)
 
+  scope(:made_in_USA, -> do
+    where({:location => "United States"})
+  end)
+
+  scope :three_most_recent, -> { order(created_at: :desc).limit(3)}
+
   scope :most_reviews, -> {(
     select("foods.id, foods.name, foods.description, count(reviews.id) as reviews_count")
     .joins(:reviews)
