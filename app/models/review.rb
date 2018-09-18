@@ -1,5 +1,7 @@
 class Review < ActiveRecord::Base
-  validates :description, :presence => true
+  validates :user_rating, :presence => true
+  validates(:description, {:presence => true, :length => {:maximum => 250, :minimum => 50}})
+
   
   belongs_to :food
 
