@@ -14,7 +14,13 @@ require 'faker'
   @food.save!
   @random_number = 1+rand(4)
   @random_number.times do
-    @review = @food.reviews.new(:description => Faker::BojackHorseman.quote, :user_rating => 1+rand(4))
+    @review = @food.reviews.new(:description => Faker::Lorem.characters(75), :user_rating => 1+rand(4))
     @review.save!
   end
 end
+
+@food = @user.foods.build(:name => Faker::Food.fruits, :price => 1+rand(4), :location=> "United States")
+  @food.save!
+
+  @food = @user.foods.build(:name => Faker::Food.fruits, :price => 1+rand(4), :location=> "United States", :featured =>true)
+  @food.save!

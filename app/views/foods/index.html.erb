@@ -34,20 +34,17 @@
         <% end %>
     <% end %>
 
-
- <h1><strong>The Foods with the Most Reviews</strong></h1>
- <hr>
+    <h1><strong>The Foods with the Most Reviews</strong></h1>
+    <hr>
     <% @foods.most_reviews.each do |food| %>
-    <h3 class="btn-info"><%= link_to food.name, food_path(food) %></h3>
-    
-    <% if food.image.attached? %>
-        <p>
-            <strong>Image:</strong>
-            <br>
-            <%= image_tag food.image, class: "picture"  %>
-        </p>
-    <%end%>
+        <h3 class="btn-info"><%= link_to food.name, food_path(food) %></h3>
+        <p><strong>From: <%= food.location %></strong></p>
+        <p><strong>Price $<%= food.price %></strong></p>
+        <% if food.image.attached? %>
+            <p><strong>Image:</strong><br><%= image_tag food.image, class: "picture"  %></p>
+        <% end %>
     <% end %>
+    <hr>
 
     <h1><strong>All the Foods Items</strong></h1>
     <% @foods.each do |food| %>

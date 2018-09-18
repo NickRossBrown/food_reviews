@@ -17,7 +17,7 @@ class Food < ActiveRecord::Base
   scope :three_most_recent, -> { order(created_at: :desc).limit(3)}
 
   scope :most_reviews, -> {(
-    select("foods.id, foods.name, foods.description, count(reviews.id) as reviews_count")
+    select("foods.id, foods.name, foods.location, foods.price, foods.description, count(reviews.id) as reviews_count")
     .joins(:reviews)
     .group("foods.id")
     .order("reviews_count DESC")
