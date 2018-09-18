@@ -5,9 +5,7 @@
   <%= f.text_field :description%>
   <%= f.label :user_rating %>
   <%= f.select :user_rating, options_for_select([["Pick A Rating", ""], ["★ ", 1], ["★★", 2], ["★★★",3],  ["★★★★",4],  ["★★★★★", 5]]), :class => 'form_dropBox' %>
-  <% if !@review.description.nil? %>
-    <%= f.label :feature? %>
-    <%= f.check_box :featured %>
-  <% end %>
+  <%= f.label :feature? %>
+  <%= f.check_box :featured %>
   <p><%= f.submit %></p>
 <% end %>

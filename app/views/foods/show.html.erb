@@ -1,20 +1,15 @@
 <% content_for(:title, "Food-Show") %>
+<div class="display">
+    <h1><%= @food.name%></h1>
+    <h3><%= @food.location%></h3>
+    <h3><%= @food.price%></h3>
+    <% if @food.image.attached? %>
+            <h3><%= image_tag @food.image %></h3>
+    <%end%>
+</div>
 
 <% if @food.reviews.any? %>
     <h3>Here are the five most recent reviews for -> <%= @food.name %>:</h3>
-     <% if @food.image.attached? %>
-        <p><strong>Image:</strong>
-            <br>
-            <%= image_tag @food.image %>
-        </p>
-    <%end%>
-    <% if @food.location %>
-        <p><strong>From: <%= @food.location %></strong></p>
-    <%end%>
-    <% if @food.price %>
-        <p><strong>Price $<%= @food.price %></strong></p>
-    <%end%>
-
     <% @food.reviews.five_most_recent.each do |review| %>
           <hr>
           <div class="card">
@@ -29,13 +24,13 @@
                                         :data => {:confirm => "Are you sure?",
                                                             :method => "delete"} %></button>
              <% end %>
-      
           </div>
         <% end %>
     <% else %>
-    <p>There are no reviews yet!</p>
+    <hr>
+    <hr>
+    <h3>There are no reviews yet!</h3>
 <% end %>
-
 <hr>
 <hr>
 <div class="return">
@@ -46,7 +41,7 @@
                                             :method => "delete"} %></p>
     <% end %>                                       
 </div>
-<h3>Here are all the reviews for -> <%= @food.name %>:</h3>
+<h3>All the reviews for -> <%= @food.name %>:</h3>
 <% if @food.reviews.any? %>
 <% @food.reviews.each do |review| %>
           <hr>
@@ -54,9 +49,6 @@
               <h3><%= review.user_rating %> Stars </h3>
               <hr>
               <h5><%= review.description %> </h5>
-              <hr>
-              <%= review.featured %>
-              <%= review.user %>
               <% if @food.user == current_user %>
                 <button class="btn btn-success"><%= link_to "Edit", edit_food_review_path(@food, review) %></button>
 
@@ -64,7 +56,6 @@
                                         :data => {:confirm => "Are you sure?",
                                                             :method => "delete"} %></button>
              <% end %>
-      
           </div>
         <% end %>
     <% else %>
